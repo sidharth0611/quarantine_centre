@@ -1,0 +1,138 @@
+{>"layout" /} 
+{<body} 
+    <br/>
+    <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+                <form method="post" action="/add">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" name="name" />              
+                    </div>
+                    <div class="form-group">
+                        <label>Date of birth</label>
+                        <input type="date" class="form-control" name="dob" />               
+                    </div>
+                    <button type="Submit" class="btn btn-primary" value="save" >submit</button>
+                <br/>
+                </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    {#patient}
+                        <div class="row">
+                            {name}
+                            {id}
+                            {testing_type}
+                            {results}
+                        </div>
+                    {/patient}
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" action="/test_add">
+                        <div class="form-group">
+                            <label>Id</label>
+                            <input type="text" class="form-control" name="id" />              
+                        </div>
+                        <div class="form-group">
+                            <label>test tpye</label>
+                            <select name="testing_type" id="testing_type" class="form-control">
+                                <option value="kit">kit</option>
+                                <option value="screening">screening</option>
+                                <option value="antibody">antibody</option>
+                            </select>              
+                        </div>
+                        <div class="form-group">
+                            <label>results</label>
+                            <select name="results" id="results" class="form-control">
+                                <option value="pos">positive</option>
+                                <option value="neg">negative</option>
+                            </select>                 
+                        </div>
+                        <button type="Submit" class="btn btn-primary" value="save" >submit</button>
+                        <br/>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" action="/search">
+                        <div class="form-group">
+                            <label>Id</label>
+                            <input type="text" class="form-control" name="id" />              
+                        </div>
+                        <div>
+                            {#testing}
+                                {name}
+                            {/testing}
+                        </div>
+                        <button type="Submit" class="btn btn-primary" value="save" >submit</button>
+                        <br/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" action="/bed_assign">
+                        <div class="form-group">
+                            <label>Id</label>
+                            <input type="text" class="form-control" name="id" />              
+                        </div>
+                        <div class="form-group">
+                            <label>Assigned bed</label>
+                            <select name="bed_type" id="bed_type" class="form-control">
+                                <option value="normal">normal</option>
+                                <option value="ICU">ICU</option>
+                                <option value="ventilator">ventilator</option>
+                            </select>              
+                        </div>
+                        <button type="Submit" class="btn btn-primary" value="save" >submit</button>
+                        <br/>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" action="/bed_search">
+                        <div class="form-group">
+                            <label>bed_type</label>
+                            <select name="bed_type" id="bed_type" class="form-control">
+                                <option value="normal">normal</option>
+                                <option value="ICU">ICU</option>
+                                <option value="ventilator">ventilator</option>
+                            </select>               
+                        </div>
+                        <div>
+                            {#bed_assign}
+                                {name}
+                                {id}
+                                {bed_type}
+                            {/bed_assign}
+                        </div>
+                        <button type="Submit" class="btn btn-primary" value="save" >submit</button>
+                        <br/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{/body}
