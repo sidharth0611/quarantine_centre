@@ -29,7 +29,29 @@ app.get("/", function (req, res) {
     res.render("index", { patient: result.rows });
   })
 });
-//
+
+app.post("/bed_count", function (req, res) {
+  pool.query('SELECT * FROM bed WHERE bed_type = $1',['ICU'], (err, result) => {
+    if(err){
+      console.log("bc dimaag kharab kiya ye error")
+    }
+    pool.query('SELECT * FROM bed WHERE bed_type = $1',['normal'], (err, result_normal) => {
+      if(err){
+        console.log("bc dimaag kharab kiya ye error")
+      }
+      pool.query('SELECT * FROM bed WHERE bed_type = $1',['ventilator'], (err, result_ventilator) => {
+        if(err){
+          console.log("bc dimaag kharab kiya ye error")
+        }
+        console.log(result.rows.length)
+        console.log(result_normal.rows.length)
+        console.log(result_ventilator.rows.length)
+        res.render("index", { bed_count: result.rows, ICU: parseInt(result.rows.length), normal: parseInt(result_normal.rows.length), ventilator: parseInt(result_ventilator.rows.length) });
+      });
+    });
+  });
+});
+
 app.post('/add', function(req, res){
   pool.query("INSERT INTO patient(name, dob) VALUES($1, $2)",
   [req.body.name, req.body.dob]);
@@ -62,7 +84,6 @@ app.post('/bed_assign', function(req, res){
   [req.body.id, req.body.bed_type]);
   res.redirect('/');
 });
-
 
 
 const PORT = process.env.PORT || 7000;

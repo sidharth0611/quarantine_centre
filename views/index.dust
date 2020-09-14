@@ -112,25 +112,12 @@
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-body">
-                    <form method="post" action="/bed_search">
-                        <div class="form-group">
-                            <label>bed_type</label>
-                            <select name="bed_type" id="bed_type" class="form-control">
-                                <option value="normal">normal</option>
-                                <option value="ICU">ICU</option>
-                                <option value="ventilator">ventilator</option>
-                            </select>               
-                        </div>
-                        <div>
-                            {#bed_assign}
-                                {name}
-                                {id}
-                                {bed_type}
-                            {/bed_assign}
-                        </div>
+                    <div class="form-group">
+                    <form method="post" action="/bed_count">
+                        <div id="piechart" style="width: 500px; height: 200px;"></div>
                         <button type="Submit" class="btn btn-primary" value="save" >submit</button>
-                        <br/>
                     </form>
+                    <br/>
                 </div>
             </div>
         </div>
