@@ -43,9 +43,6 @@ app.post("/bed_count", function (req, res) {
         if(err){
           console.log("bc dimaag kharab kiya ye error")
         }
-        console.log(result.rows.length)
-        console.log(result_normal.rows.length)
-        console.log(result_ventilator.rows.length)
         res.render("index", { bed_count: result.rows, ICU: parseInt(result.rows.length), normal: parseInt(result_normal.rows.length), ventilator: parseInt(result_ventilator.rows.length) });
       });
     });
@@ -100,7 +97,6 @@ app.post('/discharge', function(req, res){
     if(err){
       console.log('err')
     }
-    console.log(result)
     res.render("index", {discharge: result.rows})
   })
 })

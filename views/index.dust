@@ -55,8 +55,8 @@
                         </div>
                         <div class="form-group">
                             <select name="results" id="results" placeholder="results" class="form-control">
-                                <option value="pos">positive</option>
-                                <option value="neg">negative</option>
+                                <option value="pos">pos</option>
+                                <option value="neg">neg</option>
                             </select>                 
                         </div>
                         <button type="Submit" class="btn btn-primary" value="save" >submit</button>
