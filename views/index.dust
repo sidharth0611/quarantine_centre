@@ -1,36 +1,38 @@
 {>"layout" /} 
 {<body} 
     <br/>
-    <div class="row">
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-body">
-                <form method="post" action="/add">
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" class="form-control" name="name" />              
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="post" action="/add">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="id" name="name" />              
+                            </div>
+                            <div class="form-group">
+                                <input type="date" class="form-control" placeholder="date_of_birth" name="dob" />               
+                            </div>
+                            <button type="Submit" class="btn btn-primary" value="save" >submit</button>
+                        <br/>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label>Date of birth</label>
-                        <input type="date" class="form-control" name="dob" />               
-                    </div>
-                    <button type="Submit" class="btn btn-primary" value="save" >submit</button>
-                <br/>
-                </form>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-body">
-                    {#patient}
-                        <div class="row">
-                            {name}
-                            {id}
-                            {testing_type}
-                            {results}
+                </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="ex3">
+                        <div class="card-body">
+                            {#patient}
+                                <div class="row">
+                                    {name}
+                                    {id}
+                                    {testing_type}
+                                    {results}
+                                </div>
+                            {/patient}
                         </div>
-                    {/patient}
+                    </div>
                 </div>
             </div>
         </div>
@@ -42,20 +44,17 @@
                 <div class="card-body">
                     <form method="post" action="/test_add">
                         <div class="form-group">
-                            <label>Id</label>
-                            <input type="text" class="form-control" name="id" />              
+                            <input type="text" class="form-control" placeholder="id" name="id" />              
                         </div>
                         <div class="form-group">
-                            <label>test tpye</label>
-                            <select name="testing_type" id="testing_type" class="form-control">
+                            <select name="testing_type" id="testing_type" placeholder="test-type" class="form-control">
                                 <option value="kit">kit</option>
                                 <option value="screening">screening</option>
                                 <option value="antibody">antibody</option>
                             </select>              
                         </div>
                         <div class="form-group">
-                            <label>results</label>
-                            <select name="results" id="results" class="form-control">
+                            <select name="results" id="results" placeholder="results" class="form-control">
                                 <option value="pos">positive</option>
                                 <option value="neg">negative</option>
                             </select>                 
@@ -71,8 +70,7 @@
                 <div class="card-body">
                     <form method="post" action="/search">
                         <div class="form-group">
-                            <label>Id</label>
-                            <input type="text" class="form-control" name="id" />              
+                            <input type="text" class="form-control" placeholder="id" name="id" />              
                         </div>
                         <div>
                             {#testing}
@@ -91,9 +89,8 @@
             <div class="card">
                 <div class="card-body">
                     <form method="post" action="/bed_assign">
-                        <div class="form-group">
-                            <label>Id</label>
-                            <input type="text" class="form-control" name="id" />              
+                        <div class="form-group">                      
+                            <input type="text" class="form-control" placeholder="id" name="id" />              
                         </div>
                         <div class="form-group">
                             <label>Assigned bed</label>
@@ -114,8 +111,8 @@
                 <div class="card-body">
                     <div class="form-group">
                     <form method="post" action="/bed_count">
-                        <div id="piechart" style="width: 500px; padding: 10x; height: 200px;"></div>
                         <button type="Submit" class="btn btn-primary" value="save" >vie pie</button>
+                        <div id="piechart" style="width: 500px; padding: 10x; height: 200px;"></div>
                     </form>
                     <br/>
                     <form method="post" action="/admitted">

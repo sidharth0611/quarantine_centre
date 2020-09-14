@@ -4,3 +4,27 @@
     border-radius: 5px; /* 5px rounded corners */
     padding: 2px 16px;
   }
+
+  div.ex3 {
+    background-color: #79fedc;
+    width: 300px;
+    height: 200px;
+    overflow: scroll;
+    padding: 5px 20px;
+  }
+  
+  .card button {
+    border: none;
+    outline: 0;
+    padding: 5px;
+    color:white;
+    background-color: #79fea5;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  .card button:hover {
+    opacity: 0.7;
+  }
