@@ -85,6 +85,26 @@ app.post('/bed_assign', function(req, res){
   res.redirect('/');
 });
 
+app.post('/admitted', function(req, res){
+  pool.query('SELECT bed.id, bed.bed_type, testing.id, testing.results FROM bed INNER JOIN testing ON bed.id= testing.id WHERE testing.results = $1',['pos'], function(err, result){
+    if(err){
+      console.log('err')
+    }
+    console.log(result)
+    res.render("index", {admitted: result.rows})
+  })
+});
+
+app.post('/discharge', function(req, res){
+  pool.query('SELECT testing.id, testing.results, patient.name, patient.id FROM testing INNER JOIN patient ON patient.id = testing.id WHERE testing.results = $1',['neg'],function(err, result){
+    if(err){
+      console.log('err')
+    }
+    console.log(result)
+    res.render("index", {discharge: result.rows})
+  })
+})
+
 
 const PORT = process.env.PORT || 7000;
 app.listen(PORT, console.log(`Server started on port ${PORT}`));

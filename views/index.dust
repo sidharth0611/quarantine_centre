@@ -114,10 +114,29 @@
                 <div class="card-body">
                     <div class="form-group">
                     <form method="post" action="/bed_count">
-                        <div id="piechart" style="width: 500px; height: 200px;"></div>
-                        <button type="Submit" class="btn btn-primary" value="save" >submit</button>
+                        <div id="piechart" style="width: 500px; padding: 10x; height: 200px;"></div>
+                        <button type="Submit" class="btn btn-primary" value="save" >vie pie</button>
                     </form>
                     <br/>
+                    <form method="post" action="/admitted">
+                        {#admitted}
+                        <div class="row">
+                            {id}
+                            {bed_type}
+                        </div>
+                        {/admitted}
+                        <button type="Submit" class="btn btn-primary" value="save" >patients</button>
+                    </form>
+                    <br/>
+                    <form method="post" action="/discharge">
+                        {#discharge}
+                        <div class="row">
+                            {id}
+                            {name}
+                        </div>
+                        {/discharge}
+                        <button type="Submit" class="btn btn-primary" value="save" >discharge</button>
+                    </form>
                 </div>
             </div>
         </div>
