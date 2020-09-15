@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get("/", function (req, res) {
-  pool.query('SELECT patient.name, patient.id , testing.testing_type, testing.results FROM patient LEFT JOIN testing ON patient.id = testing.id', (err, result) => {
+  pool.query('SELECT patient.name, patient.id ,bed.bed_type, testing.testing_type, testing.results FROM patient LEFT JOIN testing ON patient.id = testing.id LEFT JOIN bed ON patient.id = bed.id', (err, result) => {
     if(err){
       console.log("bc dimaag kharab kiya ye error")
     }
@@ -76,9 +76,21 @@ app.post('/test_add', function(req, res){
   res.redirect('/');
 });
 
+app.post('/test_update', function(req,res){
+  pool.query("UPDATE testing SET testing_type = $1, results = $2 WHERE id = $3",
+  [req.body.testing_type, req.body.results, req.body.id]);
+  res.redirect('/');
+})
+
 app.post('/bed_assign', function(req, res){
   pool.query("INSERT INTO bed(id, bed_type) VALUES($1, $2)",
   [req.body.id, req.body.bed_type]);
+  res.redirect('/');
+});
+
+app.post('/bed_update', function(req, res){
+  pool.query("UPDATE bed SET bed_type = $1 WHERE id = $2",
+  [req.body.bed_type, req.body.id]);
   res.redirect('/');
 });
 
@@ -93,13 +105,15 @@ app.post('/admitted', function(req, res){
 });
 
 app.post('/discharge', function(req, res){
-  pool.query('SELECT testing.id, testing.results, patient.name, patient.id FROM testing INNER JOIN patient ON patient.id = testing.id WHERE testing.results = $1',['neg'],function(err, result){
+  pool.query('SELECT * FROM bed WHERE bed_type = $1',['discharge'],function(err, result){
     if(err){
       console.log('err')
     }
+    console.log(result)
     res.render("index", {discharge: result.rows})
   })
 })
+
 
 
 const PORT = process.env.PORT || 7000;
