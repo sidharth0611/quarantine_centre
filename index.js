@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get("/", function (req, res) {
   pool.query('SELECT patient.name, patient.id ,bed.bed_type, testing.testing_type, testing.results FROM patient LEFT JOIN testing ON patient.id = testing.id LEFT JOIN bed ON patient.id = bed.id', (err, result) => {
     if(err){
-      console.log("bc dimaag kharab kiya ye error")
+      console.log(" error")
     }
     res.render("index", { patient: result.rows });
   })
@@ -33,15 +33,15 @@ app.get("/", function (req, res) {
 app.post("/bed_count", function (req, res) {
   pool.query('SELECT * FROM bed WHERE bed_type = $1',['ICU'], (err, result) => {
     if(err){
-      console.log("bc dimaag kharab kiya ye error")
+      console.log("error")
     }
     pool.query('SELECT * FROM bed WHERE bed_type = $1',['normal'], (err, result_normal) => {
       if(err){
-        console.log("bc dimaag kharab kiya ye error")
+        console.log("error")
       }
       pool.query('SELECT * FROM bed WHERE bed_type = $1',['ventilator'], (err, result_ventilator) => {
         if(err){
-          console.log("bc dimaag kharab kiya ye error")
+          console.log("error")
         }
         res.render("index", { bed_count: result.rows, ICU: parseInt(result.rows.length), normal: parseInt(result_normal.rows.length), ventilator: parseInt(result_ventilator.rows.length) });
       });
